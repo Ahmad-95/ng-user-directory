@@ -1,3 +1,27 @@
-<p>
-  user-detail works!
-</p>
+<!-- <div *ngIf="users">
+<div *ngFor="let user of users" class="card" style="width: 18rem;">
+  <div  class="card-header">
+      {{ user.firstName }} {{ user.lastName }}
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><b>Age: </b>{{ user.age }}</li>
+      <li class="list-group-item"><b>Gender: </b>{{ user.gender }}</li>
+      <li class="list-group-item"><b>Email: </b>{{ user.email }}</li>
+      <li class="list-group-item"><b>Status: </b>{{ user.status }}</li>
+    </ul>
+  </div>
+</div> -->
+<div *ngIf="users">
+  <div *ngFor="let user of users" class="list-group">
+      <a class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1"><b>{{ user.firstName }} {{ user.lastName }}</b></h5>
+          <small *ngIf="user.status==='active'"><b>Status </b><span class="badge badge-success">{{ user.status }}</span></small>
+          <small *ngIf="user.status==='inactive'"><b>Status </b><span class="badge badge-primary">{{ user.status }}</span></small>
+        </div>
+        <b>Age: </b>{{ user.age }} / {{ user.gender }}<br/>
+        <b>Email: </b>{{ user.email }}
+        <small><button type="button" class="btn btn-danger" (click)="onDelete(user.id)">Delete</button></small> 
+      </a>
+  </div>
+</div>

@@ -11,6 +11,7 @@ export class UserDataComponent implements OnInit {
 
   
   profileForm = new FormGroup({
+    id: new FormControl(''),
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
     age: new FormControl('', Validators.required),
@@ -32,9 +33,9 @@ export class UserDataComponent implements OnInit {
     
   }
 
-  get formValue() {
-    return JSON.stringify(this.profileForm.value);
-  }
+  // get formValue() {
+  //   return JSON.stringify(this.profileForm.value);
+  // }
 
 }
 
