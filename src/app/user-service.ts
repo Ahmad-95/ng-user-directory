@@ -51,5 +51,14 @@ export class UserService {
     
 
     }
+    getUserById(id: number): User {
+        const indexOfUserToBeFetched = this.users.map(user => user.id).indexOf(id);
+        if(indexOfUserToBeFetched === -1)
+        {
+            return undefined;
+        }
+        console.log("User ID:", indexOfUserToBeFetched);
+        return this.users[indexOfUserToBeFetched];     
+    }
 
 }

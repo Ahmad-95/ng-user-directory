@@ -21,7 +21,8 @@
         </div>
         <b>Age: </b>{{ user.age }} / {{ user.gender }}<br/>
         <b>Email: </b>{{ user.email }}
-        <small><button type="button" class="btn btn-danger" (click)="onDelete(user.id)">Delete</button></small> 
+        <small><button type="button" class="btn btn-danger" (click)="onDelete(user.id)">Delete</button></small>
+        <small><a class="btn btn-success" target="_blank" role="button" (click)="onEdit(user.id)">Edit User</a></small> 
       </a>
   </div>
 </div>

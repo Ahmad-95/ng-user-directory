@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user-service';
 import { User } from '../user';
 import { Observable } from 'rxjs';
-
+import { Router } from '@angular/router';
+import { EditUserComponent } from '../edit-user/edit-user.component';
 
 @Component({
   selector: 'app-user-detail',
@@ -12,8 +13,9 @@ import { Observable } from 'rxjs';
 export class UserDetailComponent implements OnInit {
 
   users: User[] = [];
+  
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService,private router: Router) {
   }
 
   ngOnInit() {
@@ -26,6 +28,11 @@ export class UserDetailComponent implements OnInit {
     this.userService.deleteUser(id);
   }
 
+  onEdit(id: number){
+    this.router.navigate(['edit-user', id]);
+    // console.log("Edit");
+  }
+  
   // get us() {
   //   return JSON.stringify(this.users);
   // }
