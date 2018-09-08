@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from './user';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 
@@ -9,7 +10,7 @@ export class UserService {
     public readonly users$: Observable<User[]> = this.users$$.asObservable();
     private users: User[] = [];
 
-    constructor() {
+    constructor(private router: Router) {
         this.users.push({
             id: 1,
             firstName: 'Zain',
@@ -42,7 +43,8 @@ export class UserService {
         
         const indexOfRecordToDelete =  this.users.map(user => user.id).indexOf(id);
         console.log('xaxa delete', indexOfRecordToDelete);
-        this.users.splice(indexOfRecordToDelete);
+        this.users.splice(indexOfRecordToDelete, 1);
+        this.users$$.next(this.users);
         // console.log(this.users.findIndex);
         //var found = this.users.find(function(element)
         //console.log(id)
@@ -59,6 +61,16 @@ export class UserService {
         }
         console.log("User ID:", indexOfUserToBeFetched);
         return this.users[indexOfUserToBeFetched];     
+    }
+
+    updateUser(id: number, user: User): boolean {
+        const indexOfUserToUpdate = this.users.map(user => user.id).indexOf(id);
+        
+        this.users[indexOfUserToUpdate] = user;
+        console.log("Updated: ",user);
+        this.users$$.next(this.users);
+        this.router.navigate(['']);
+        return true;
     }
 
 }

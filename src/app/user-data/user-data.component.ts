@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../user-service';
-
+import { FirstNameValidator } from '../user-validator';
 @Component({
   selector: 'app-user-data',
   templateUrl: './user-data.component.html',
@@ -12,7 +12,7 @@ export class UserDataComponent implements OnInit {
   
   profileForm = new FormGroup({
     id: new FormControl(''),
-    firstName: new FormControl('', Validators.required),
+    firstName: new FormControl('', [Validators.required, FirstNameValidator()]),
     lastName: new FormControl('', Validators.required),
     age: new FormControl('', Validators.required),
     gender: new FormControl('', Validators.required),

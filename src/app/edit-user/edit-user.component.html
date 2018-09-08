@@ -5,3 +5,56 @@
 <p *ngIf="!user">
     YAKKI KA BAJA
 </p>
+
+<div *ngIf="user">
+    <div class="container">
+            <div class="row">
+            <div class="col">
+                <form [formGroup]="profileForm" (ngSubmit)="onUpdate()">
+                <div class="form-group">
+                    <label>First Name</label>
+                    <input type="text" formControlName="firstName" onkeyup="this.value = this.value.replace(/[^a-z A-Z]/, '')" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Last Name</label>
+                    <input type="text" onkeyup="this.value = this.value.replace(/[^a-z A-Z]/, '')" formControlName="lastName" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>
+                    Age:
+                    <input type="number" formControlName="age" value="" class="form-control">
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                    Gender:
+                    <select class="form-control" formControlName="gender" class="form-control">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Others">Others</option>
+                    </select>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" formControlName="email" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>
+                    <b>Status:</b>
+                    </label>
+                    <div class="row">
+                    <label class="md-check">
+                        <input type="radio" formControlName="status" value="active"> Active
+                        </label>
+                        <label class="md-check">
+                        <input type="radio" formControlName="status" value="inactive">Inactive
+                        </label>
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit"  [disabled]="!profileForm.valid">Update</button>
+                </form>
+            </div>
+            </div>
+        </div>
+</div>

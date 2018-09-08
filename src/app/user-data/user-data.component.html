@@ -4,8 +4,19 @@
       <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label>First Name</label>
-          <input type="text" formControlName="firstName" onkeyup="this.value = this.value.replace(/[^a-z A-Z]/, '')" class="form-control">
+          <input type="text" formControlName="firstName"  class="form-control" required>
+          <p *ngIf="profileForm.controls['firstName'].invalid && (profileForm.controls['firstName'].dirty || profileForm.controls['firstName'].touched)">First Name can only have alphabets except for letter 'j'</p> 
+          <p *ngIf="profileForm.controls['firstName'].errors.forbiddenName ">lalalal Name can only have alphabets except for letter 'j'</p> 
         </div>
+        
+  
+        <!-- <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+          class="alert alert-danger">
+        <div *ngIf="firstName.errors.forbiddenName">
+            <label>First Name</label>
+          <input type="text" formControlName="firstName"  class="form-control">    
+        </div>
+      </div> -->
         <div class="form-group">
           <label>Last Name</label>
           <input type="text" onkeyup="this.value = this.value.replace(/[^a-z A-Z]/, '')" formControlName="lastName" class="form-control">
@@ -34,13 +45,20 @@
           <label>
             <b>Status:</b>
           </label>
-          <div class="row">
-            <label class="md-check">
-                <input type="radio" formControlName="status" value="active"> Active
-              </label>
-              <label class="md-check">
-                <input type="radio" formControlName="status" value="inactive">Inactive
-              </label>
+          <!-- Haahhaahah -->
+          <div class="container">
+            
+              <div class="row">
+                  <label class="md-check">
+                      <span><input type="radio" formControlName="status" value="active"></span>Active
+                  </label>
+              </div>
+              <div class="row">
+                  <label class="md-check">
+                      <span><input type="radio" formControlName="status" value="inactive">Inactive</span>
+                    </label>
+              </div>
+              
           </div>
         </div>
         <button class="btn btn-primary" type="submit" [disabled]="!profileForm.valid">Submit</button>
